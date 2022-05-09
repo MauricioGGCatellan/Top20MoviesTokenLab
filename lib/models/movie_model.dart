@@ -16,7 +16,7 @@ class BasicMovieModel {
 class MovieModel extends BasicMovieModel {
   String releaseDate = '';
   String originalLanguage = '';
-  double score = -1.0;
+  double score = 0.0;
   double popularity = 0.0;
   String overview = '';
 
@@ -25,6 +25,7 @@ class MovieModel extends BasicMovieModel {
       : super(id, title, posterUrl) {
     this.releaseDate = releaseDate;
     this.originalLanguage = originalLanguage;
+    this.score = score;
     this.popularity = popularity;
     this.overview = overview;
   }

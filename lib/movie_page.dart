@@ -28,7 +28,7 @@ class _MyMoviePageState extends State<MyMoviePage> {
     return Center(
         child: Column(children: [
       Container(
-        height: 30,
+        height: 50,
         width: 500,
         decoration: BoxDecoration(
           color: Color.fromARGB(210, 253, 213, 93),
@@ -39,7 +39,10 @@ class _MyMoviePageState extends State<MyMoviePage> {
         ),
         child: Align(
           alignment: Alignment.center,
-          child: Text(info['title']!),
+          child: Text(
+            info['title']!,
+            style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+          ),
         ),
       ),
       Image.network(
@@ -65,7 +68,7 @@ class _MyMoviePageState extends State<MyMoviePage> {
         ),
         child: Align(
           alignment: Alignment.center,
-          child: Text(info['releaseDate']!),
+          child: Text('Release Date: ' + info['releaseDate']!),
         ),
       ),
       Container(
@@ -80,7 +83,7 @@ class _MyMoviePageState extends State<MyMoviePage> {
         ),
         child: Align(
           alignment: Alignment.center,
-          child: Text(info['originalLanguage']!),
+          child: Text('Original Language: ' + info['originalLanguage']!),
         ),
       ),
       Container(
@@ -95,7 +98,22 @@ class _MyMoviePageState extends State<MyMoviePage> {
         ),
         child: Align(
           alignment: Alignment.center,
-          child: Text(info['popularity']!),
+          child: Text('Score: ' + info['score']!),
+        ),
+      ),
+      Container(
+        height: 30,
+        width: 500,
+        decoration: BoxDecoration(
+          color: Color.fromARGB(210, 253, 213, 93),
+          border: Border.all(
+            color: Colors.black,
+            width: 1,
+          ),
+        ),
+        child: Align(
+          alignment: Alignment.center,
+          child: Text('Popularity: ' + info['popularity']!),
         ),
       ),
       SingleChildScrollView(
@@ -170,7 +188,7 @@ class _MyMoviePageState extends State<MyMoviePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalhes do Filme'),
+        title: Text('Movie Details'),
       ),
       body: AnimatedBuilder(
         animation: controller.state,

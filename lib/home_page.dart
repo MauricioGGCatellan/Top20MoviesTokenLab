@@ -122,11 +122,11 @@ class CustomRow extends StatelessWidget {
           Navigator.of(context).pushNamed('/movie', arguments: info['id']);
         },
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 100,
-              width: 250,
+              height: 200,
+              width: 100,
               decoration: BoxDecoration(
                 color: Color.fromARGB(210, 253, 213, 93),
                 border: Border.all(
@@ -141,23 +141,26 @@ class CustomRow extends StatelessWidget {
                         TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
               ),
             ),
-            /*Container(
-              height: 100,
-              width: 250,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1,
-                ),
-              ),
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(info[1]),
-              ),
-            ),*/
             Container(
-              height: 100,
-              width: MediaQuery.of(context).size.width - 300, //250,
+                color: Colors.white,
+                child: Image.network(
+                  info['posterUrl']!,
+                  height: 200,
+                  errorBuilder: ((context, error, stackTrace) => Image.asset(
+                        'assets/images/place_holder.png',
+                        height: 200,
+                        width: 133,
+                      )),
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                )),
+            Container(
+              height: 200,
+              width: 350, //250,
               decoration: BoxDecoration(
                 color: Color.fromARGB(210, 253, 213, 93),
                 border: Border.all(

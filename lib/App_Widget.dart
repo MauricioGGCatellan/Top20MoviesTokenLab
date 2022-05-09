@@ -9,15 +9,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Top 20 Movies :)',
+      title: 'Top 20 Movies',
       theme: ThemeData(
         primarySwatch: Colors.green,
         scaffoldBackgroundColor: Color.fromARGB(255, 179, 248, 137),
       ),
+      debugShowCheckedModeBanner: false,
       //home: const MyHomePage(title: 'Top 20 Movies :)'),
       initialRoute: '/',
       routes: {
-        '/': (context) => MyHomePage(title: 'Top 20 Movies :)'),
+        '/': (context) => MyHomePage(title: 'Top 20 Movies'),
       },
       onGenerateRoute: (RouteSettings settings) {
         if (settings.name == '/movie') {
