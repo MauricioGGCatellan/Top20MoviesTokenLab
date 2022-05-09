@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class CustomRow extends StatelessWidget {
-  final List<String> info;
+  final Map<String, String> info;
 
   const CustomRow({Key? key, required this.info}) : super(key: key);
 
@@ -119,26 +119,29 @@ class CustomRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Navigator.of(context).pushNamed('/movie', arguments: info[3]);
+          Navigator.of(context).pushNamed('/movie', arguments: info['id']);
         },
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               height: 100,
               width: 250,
               decoration: BoxDecoration(
+                color: Color.fromARGB(210, 253, 213, 93),
                 border: Border.all(
-                  color: Colors.black,
+                  color: Colors.brown,
                   width: 1,
                 ),
               ),
               child: Align(
                 alignment: Alignment.center,
-                child: Text(info[0]),
+                child: Text(info['ranking']!,
+                    style:
+                        TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
               ),
             ),
-            Container(
+            /*Container(
               height: 100,
               width: 250,
               decoration: BoxDecoration(
@@ -151,19 +154,20 @@ class CustomRow extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(info[1]),
               ),
-            ),
+            ),*/
             Container(
               height: 100,
-              width: 250,
+              width: MediaQuery.of(context).size.width - 300, //250,
               decoration: BoxDecoration(
+                color: Color.fromARGB(210, 253, 213, 93),
                 border: Border.all(
-                  color: Colors.black,
+                  color: Colors.brown,
                   width: 1,
                 ),
               ),
               child: Align(
                 alignment: Alignment.center,
-                child: Text(info[2]),
+                child: Text(info['title']!),
               ),
             ),
           ],

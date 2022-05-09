@@ -18,12 +18,13 @@ class HomeController {
     }
   }
 
-  List<String> formatting(int pos) {
-    List<String> info = [];
-    info.add((pos + 1).toString());
-    info.add(movieList[pos].score.toString());
-    info.add(movieList[pos].title);
-    info.add(movieList[pos].id.toString());
+  Map<String, String> formatting(int pos) {
+    Map<String, String> info = {};
+
+    info['ranking'] = (pos + 1).toString();
+    info['posterUrl'] = movieList[pos].posterUrl;
+    info['title'] = movieList[pos].title;
+    info['id'] = movieList[pos].id.toString();
 
     return info;
   }

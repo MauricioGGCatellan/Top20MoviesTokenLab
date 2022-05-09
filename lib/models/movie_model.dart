@@ -3,12 +3,12 @@ import 'package:http/http.dart' as http;
 
 class BasicMovieModel {
   int id = 0;
-  double score = -1.0;
   String title = '';
+  String posterUrl = '';
 
-  BasicMovieModel(int id, double score, String title) {
+  BasicMovieModel(int id, String title, String posterUrl) {
     this.id = id;
-    this.score = score;
+    this.posterUrl = posterUrl;
     this.title = title;
   }
 }
@@ -16,12 +16,13 @@ class BasicMovieModel {
 class MovieModel extends BasicMovieModel {
   String releaseDate = '';
   String originalLanguage = '';
+  double score = -1.0;
   double popularity = 0.0;
   String overview = '';
 
-  MovieModel(int id, double score, String title, String releaseDate,
-      String originalLanguage, double popularity, String overview)
-      : super(id, score, title) {
+  MovieModel(int id, String title, String posterUrl, String releaseDate,
+      String originalLanguage, double score, double popularity, String overview)
+      : super(id, title, posterUrl) {
     this.releaseDate = releaseDate;
     this.originalLanguage = originalLanguage;
     this.popularity = popularity;
@@ -39,10 +40,11 @@ Future<MovieModel> fetchMovie(String id) async {
 
   var movie = MovieModel(
     json['id'],
-    json['vote_average'],
     json['title'],
+    json['poster_url'],
     json['release_date'],
     json['original_language'],
+    json['vote_average'],
     json['popularity'],
     json['overview'],
   );
@@ -61,8 +63,8 @@ Future<List<BasicMovieModel>> fetchList() async {
     var Json = unJson;
     var movie = BasicMovieModel(
       Json['id'],
-      Json['vote_average'],
       Json['title'],
+      Json['poster_url'],
     );
     movieList.add(movie);
   }

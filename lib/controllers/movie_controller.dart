@@ -5,7 +5,7 @@ import '../models/movie_model.dart';
 enum MovieState { loading, success, error }
 
 class MovieController {
-  MovieModel movie = MovieModel(0, 0.0, '', '', '', 0.0, '');
+  MovieModel movie = MovieModel(0, '', '', '', '', 0.0, 0.0, '');
   final state = ValueNotifier<MovieState>(MovieState.loading);
 
   Future start(String id) async {
@@ -18,14 +18,15 @@ class MovieController {
     }
   }
 
-  List<String> formatting() {
-    List<String> info = [];
-    info.add(movie.score.toString());
-    info.add(movie.title);
-    info.add(movie.releaseDate);
-    info.add(movie.originalLanguage);
-    info.add(movie.popularity.toString());
-    info.add(movie.overview);
+  Map<String, String> formatting() {
+    Map<String, String> info = {};
+    info['score'] = movie.score.toString();
+    info['title'] = movie.title;
+    info['releaseDate'] = movie.releaseDate;
+    info['originalLanguage'] = movie.originalLanguage;
+    info['popularity'] = movie.popularity.toString();
+    info['overview'] = movie.overview;
+    info['posterUrl'] = movie.posterUrl;
 
     return info;
   }

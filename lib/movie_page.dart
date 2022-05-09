@@ -23,7 +23,7 @@ class _MyMoviePageState extends State<MyMoviePage> {
   _MyMoviePageState(this.id);
 
   _success() {
-    List<String> info = controller.formatting();
+    Map<String, String> info = controller.formatting();
 
     return Center(
         child: Column(children: [
@@ -31,6 +31,7 @@ class _MyMoviePageState extends State<MyMoviePage> {
         height: 30,
         width: 500,
         decoration: BoxDecoration(
+          color: Color.fromARGB(210, 253, 213, 93),
           border: Border.all(
             color: Colors.black,
             width: 1,
@@ -38,13 +39,40 @@ class _MyMoviePageState extends State<MyMoviePage> {
         ),
         child: Align(
           alignment: Alignment.center,
-          child: Text(info[2]),
+          child: Text(info['title']!),
+        ),
+      ),
+      Image.network(
+        info['posterUrl']!,
+        errorBuilder: ((context, error, stackTrace) =>
+            Image.asset('assets/images/place_holder.png')),
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
+      Container(
+        height: 30,
+        width: 500,
+        decoration: BoxDecoration(
+          color: Color.fromARGB(210, 253, 213, 93),
+          border: Border.all(
+            color: Colors.black,
+            width: 1,
+          ),
+        ),
+        child: Align(
+          alignment: Alignment.center,
+          child: Text(info['releaseDate']!),
         ),
       ),
       Container(
         height: 30,
         width: 500,
         decoration: BoxDecoration(
+          color: Color.fromARGB(210, 253, 213, 93),
           border: Border.all(
             color: Colors.black,
             width: 1,
@@ -52,13 +80,14 @@ class _MyMoviePageState extends State<MyMoviePage> {
         ),
         child: Align(
           alignment: Alignment.center,
-          child: Text(info[3]),
+          child: Text(info['originalLanguage']!),
         ),
       ),
       Container(
         height: 30,
         width: 500,
         decoration: BoxDecoration(
+          color: Color.fromARGB(210, 253, 213, 93),
           border: Border.all(
             color: Colors.black,
             width: 1,
@@ -66,22 +95,28 @@ class _MyMoviePageState extends State<MyMoviePage> {
         ),
         child: Align(
           alignment: Alignment.center,
-          child: Text(info[4]),
+          child: Text(info['popularity']!),
         ),
       ),
-      Container(
+      SingleChildScrollView(
+          child: Container(
+        //height: MediaQuery.of(context).size.height,
         width: 1000,
         decoration: BoxDecoration(
+          color: Color.fromARGB(210, 253, 213, 93),
           border: Border.all(
             color: Colors.black,
             width: 1,
           ),
         ),
         child: Align(
-          alignment: Alignment.center,
-          child: Text(info[5]),
+          alignment: Alignment.topCenter,
+          child: Text(
+            info['overview']!,
+            style: TextStyle(fontSize: 18),
+          ),
         ),
-      ),
+      )),
     ]));
   }
 
