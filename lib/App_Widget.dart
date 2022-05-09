@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'MyHomePage.dart';
-import 'MyMoviePage.dart';
+import 'home_page.dart';
+import 'movie_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -26,7 +26,13 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => MyHomePage(title: 'Top 20 Movies :)'),
-        '/movie': (context) => MyMoviePage(),
+      },
+      onGenerateRoute: (RouteSettings settings) {
+        if (settings.name == '/movie') {
+          final arg = settings.arguments as String;
+          return MaterialPageRoute(builder: (ctx) => MyMoviePage(arg));
+        }
+        return null;
       },
     );
   }
