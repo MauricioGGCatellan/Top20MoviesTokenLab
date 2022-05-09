@@ -17,10 +17,11 @@ class BasicMovieModel {
 class MovieModel extends BasicMovieModel {
   String releaseDate = '';
   String producers = '';
+  int popularity = 0;
   String overview = '';
 
   MovieModel(int id, double score, String title, String releaseDate,
-      String producers, String overview)
+      String producers, int popularity, String overview)
       : super(id, score, title) {
     this.releaseDate = releaseDate;
     this.producers = producers;
@@ -42,6 +43,7 @@ Future<MovieModel> fetchMovie(int id) async {
     json['title'],
     json['release_date'],
     json['production_companies']['name'],
+    json['popularity'],
     json['overview'],
   );
 
